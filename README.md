@@ -1,6 +1,7 @@
 # Build ChatGPT App in Flutter using OpenAI API<br><br>
 
-#Futurista
+
+# **FUTURISTA** 
 
 # **HUGE UPDATE:**
 
