@@ -1,0 +1,14 @@
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/CMakeFiles/install/strip.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/CMakeFiles/install/local.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/CMakeFiles/install.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/CMakeFiles/list_install_components.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/CMakeFiles/rebuild_cache.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/CMakeFiles/edit_cache.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/CMakeFiles/chatgpt_course.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/flutter/CMakeFiles/install/strip.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/flutter/CMakeFiles/install/local.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/flutter/CMakeFiles/install.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/flutter/CMakeFiles/list_install_components.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/flutter/CMakeFiles/rebuild_cache.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/flutter/CMakeFiles/edit_cache.dir
+/home/k4k4shi/Documents/ChatGPT_/ChatGPT_/build/linux/x64/debug/flutter/CMakeFiles/flutter_assemble.dir
