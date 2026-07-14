@@ -1,0 +1,64 @@
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+*.iml
+.idea/
+*.lock
+!pubspec.lock
+
+# Symbolication / obfuscation
+app.*.symbols
+app.*.map.json
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/App.framework
+**/xcuserdata/
+**/*.xcworkspace/xcuserdata/
+DerivedData/
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+# Android
+android/.gradle/
+android/local.properties
+android/**/gradle-wrapper.jar
+**/captures/
+**/local.properties
+*.jks
+*.keystore
+key.properties
+
+# macOS
+macos/Flutter/ephemeral/
+macos/Pods/
+
+# Misc
+.DS_Store
+*.swp
+*.swo
+.env
+.env.*
+!.env.example
+*.log
+.vscode/
+.cursor/

@@ -1,4 +1,4 @@
-package com.example.chatgpt_course
+package com.receiptline.app
 
 import io.flutter.embedding.android.FlutterActivity
 
