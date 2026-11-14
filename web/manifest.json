@@ -1,6 +1,6 @@
 {
-    "name": "chatgpt_course",
-    "short_name": "chatgpt_course",
+    "name": "athlete",
+    "short_name": "athlete",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

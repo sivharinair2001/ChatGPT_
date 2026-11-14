@@ -1,39 +1,27 @@
-import 'package:chatgpt_/providers/models_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-//import 'package:speech_to_text/speech_to_text.dart';
 
-import 'constants/constants.dart';
-import 'providers/chats_provider.dart';
-import 'screens/chat_screen.dart';
+import 'screens/home_shell.dart';
+import 'state/app_controller.dart';
+import 'theme/stride_theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const StrideApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class StrideApp extends StatelessWidget {
+  const StrideApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => ModelsProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => ChatProvider(),
-        ),
-      ],
+    return ChangeNotifierProvider(
+      create: (_) => AppController()..init(),
       child: MaterialApp(
-        title: 'ChatBOT',
+        title: 'Stride',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            scaffoldBackgroundColor: scaffoldBackgroundColor,
-            appBarTheme: AppBarTheme(
-              color: cardColor,
-            )),
-        home: const ChatScreen(),
+        theme: buildStrideTheme(),
+        home: const HomeShell(),
       ),
     );
   }
