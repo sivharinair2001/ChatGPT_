@@ -16,29 +16,34 @@ class StatBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cross = align == TextAlign.right
+        ? CrossAxisAlignment.end
+        : align == TextAlign.center
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.start;
+
     return Column(
-      crossAxisAlignment: align == TextAlign.right
-          ? CrossAxisAlignment.end
-          : align == TextAlign.center
-              ? CrossAxisAlignment.center
-              : CrossAxisAlignment.start,
+      crossAxisAlignment: cross,
       children: [
         Text(
           label.toUpperCase(),
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: StrideColors.stone,
-                letterSpacing: 1.1,
-                fontWeight: FontWeight.w700,
-              ),
+          style: const TextStyle(
+            color: StravaColors.muted,
+            fontSize: 11,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.5,
+          ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: 2),
         Text(
           value,
           textAlign: align,
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.w600,
-                letterSpacing: -0.4,
-              ),
+          style: const TextStyle(
+            color: StravaColors.text,
+            fontSize: 20,
+            fontWeight: FontWeight.w800,
+            letterSpacing: -0.3,
+          ),
         ),
       ],
     );

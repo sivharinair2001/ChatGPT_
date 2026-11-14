@@ -1,102 +1,120 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class StrideColors {
-  static const spruce = Color(0xFF1B3A2F);
-  static const moss = Color(0xFF2F6B4F);
-  static const mist = Color(0xFFE7EEE8);
-  static const fog = Color(0xFFD5E0D7);
-  static const ink = Color(0xFF14201A);
-  static const ember = Color(0xFFE85D04);
-  static const stone = Color(0xFF5C6B62);
+/// Visual tokens matched to Strava's mobile UI.
+class StravaColors {
+  static const orange = Color(0xFFFC4C02);
+  static const orangeDark = Color(0xFFE34402);
+  static const navy = Color(0xFF1E1E1E);
+  static const text = Color(0xFF242428);
+  static const muted = Color(0xFF6D6D78);
+  static const hairline = Color(0xFFE6E6EB);
+  static const canvas = Color(0xFFF7F7FA);
+  static const white = Colors.white;
+  static const mapLine = Color(0xFFFC4C02);
 }
 
 ThemeData buildStrideTheme() {
-  final display = GoogleFonts.frauncesTextTheme();
-  final body = GoogleFonts.dmSansTextTheme();
-
-  final base = ThemeData(
-    useMaterial3: true,
-    brightness: Brightness.light,
-    colorScheme: const ColorScheme.light(
-      primary: StrideColors.spruce,
-      onPrimary: Colors.white,
-      secondary: StrideColors.ember,
-      onSecondary: Colors.white,
-      surface: StrideColors.mist,
-      onSurface: StrideColors.ink,
-      surfaceContainerHighest: StrideColors.fog,
-    ),
-    scaffoldBackgroundColor: StrideColors.mist,
+  final textTheme = GoogleFonts.latoTextTheme().apply(
+    bodyColor: StravaColors.text,
+    displayColor: StravaColors.text,
   );
 
-  return base.copyWith(
-    textTheme: body.copyWith(
-      displayLarge: display.displayLarge?.copyWith(
-        color: StrideColors.ink,
-        fontWeight: FontWeight.w600,
-        letterSpacing: -1.2,
+  return ThemeData(
+    useMaterial3: true,
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: StravaColors.white,
+    colorScheme: const ColorScheme.light(
+      primary: StravaColors.orange,
+      onPrimary: Colors.white,
+      secondary: StravaColors.orange,
+      onSecondary: Colors.white,
+      surface: StravaColors.white,
+      onSurface: StravaColors.text,
+      outline: StravaColors.hairline,
+    ),
+    textTheme: textTheme.copyWith(
+      headlineLarge: textTheme.headlineLarge?.copyWith(
+        fontWeight: FontWeight.w800,
+        fontSize: 28,
+        letterSpacing: -0.4,
+        color: StravaColors.text,
       ),
-      displayMedium: display.displayMedium?.copyWith(
-        color: StrideColors.ink,
-        fontWeight: FontWeight.w600,
+      headlineMedium: textTheme.headlineMedium?.copyWith(
+        fontWeight: FontWeight.w800,
+        color: StravaColors.text,
       ),
-      headlineLarge: display.headlineLarge?.copyWith(
-        color: StrideColors.ink,
-        fontWeight: FontWeight.w600,
-        letterSpacing: -0.6,
-      ),
-      headlineMedium: display.headlineMedium?.copyWith(
-        color: StrideColors.ink,
-        fontWeight: FontWeight.w600,
-      ),
-      headlineSmall: display.headlineSmall?.copyWith(
-        color: StrideColors.ink,
-        fontWeight: FontWeight.w600,
-      ),
-      titleLarge: body.titleLarge?.copyWith(
-        color: StrideColors.ink,
+      titleLarge: textTheme.titleLarge?.copyWith(
         fontWeight: FontWeight.w700,
+        fontSize: 18,
+        color: StravaColors.text,
       ),
-      bodyLarge: body.bodyLarge?.copyWith(color: StrideColors.ink, height: 1.35),
-      bodyMedium:
-          body.bodyMedium?.copyWith(color: StrideColors.stone, height: 1.4),
-      labelLarge: body.labelLarge?.copyWith(
-        color: StrideColors.ink,
+      titleMedium: textTheme.titleMedium?.copyWith(
         fontWeight: FontWeight.w700,
-        letterSpacing: 0.2,
+        color: StravaColors.text,
+      ),
+      bodyLarge: textTheme.bodyLarge?.copyWith(
+        fontSize: 15,
+        color: StravaColors.text,
+        height: 1.3,
+      ),
+      bodyMedium: textTheme.bodyMedium?.copyWith(
+        fontSize: 13,
+        color: StravaColors.muted,
+        height: 1.3,
+      ),
+      labelSmall: textTheme.labelSmall?.copyWith(
+        fontSize: 11,
+        fontWeight: FontWeight.w700,
+        letterSpacing: 0.4,
+        color: StravaColors.muted,
       ),
     ),
     appBarTheme: AppBarTheme(
-      backgroundColor: StrideColors.mist,
-      foregroundColor: StrideColors.ink,
+      backgroundColor: StravaColors.white,
+      foregroundColor: StravaColors.text,
       elevation: 0,
-      centerTitle: false,
-      titleTextStyle: GoogleFonts.fraunces(
-        fontSize: 28,
-        fontWeight: FontWeight.w600,
-        color: StrideColors.ink,
+      scrolledUnderElevation: 0.5,
+      centerTitle: true,
+      titleTextStyle: GoogleFonts.lato(
+        fontSize: 17,
+        fontWeight: FontWeight.w700,
+        color: StravaColors.text,
       ),
+      iconTheme: const IconThemeData(color: StravaColors.text),
     ),
-    navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: Colors.white.withOpacity(0.92),
-      indicatorColor: StrideColors.fog,
-      labelTextStyle: WidgetStatePropertyAll(
-        GoogleFonts.dmSans(fontSize: 12, fontWeight: FontWeight.w600),
-      ),
+    dividerTheme: const DividerThemeData(
+      color: StravaColors.hairline,
+      thickness: 1,
+      space: 1,
     ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
-        backgroundColor: StrideColors.ember,
+        backgroundColor: StravaColors.orange,
         foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        textStyle: GoogleFonts.dmSans(fontWeight: FontWeight.w700, fontSize: 16),
+        elevation: 0,
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+        shape: const StadiumBorder(),
+        textStyle: GoogleFonts.lato(
+          fontWeight: FontWeight.w800,
+          fontSize: 16,
+          letterSpacing: 0.3,
+        ),
       ),
     ),
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: StrideColors.ember,
-      foregroundColor: Colors.white,
+    chipTheme: ChipThemeData(
+      backgroundColor: StravaColors.white,
+      selectedColor: StravaColors.orange.withOpacity(0.12),
+      side: const BorderSide(color: StravaColors.hairline),
+      labelStyle: GoogleFonts.lato(
+        fontWeight: FontWeight.w700,
+        color: StravaColors.text,
+      ),
+      shape: const StadiumBorder(),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
     ),
   );
 }
+
+// Back-compat aliases used by older widgets during migration.
+typedef StrideColors = StravaColors;

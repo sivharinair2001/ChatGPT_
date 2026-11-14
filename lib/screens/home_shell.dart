@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/strava_bottom_nav.dart';
 import 'feed_screen.dart';
 import 'profile_screen.dart';
 import 'record_screen.dart';
@@ -18,9 +19,9 @@ class _HomeShellState extends State<HomeShell> {
 
   static const _pages = [
     FeedScreen(),
-    TrainingScreen(),
+    RoutesScreen(), // Maps tab — Strava layout
     RecordScreen(),
-    RoutesScreen(),
+    TrainingScreen(), // Groups/Training stand-in with premium suite
     ProfileScreen(),
   ];
 
@@ -28,36 +29,9 @@ class _HomeShellState extends State<HomeShell> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(index: index, children: _pages),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: index,
-        onDestinationSelected: (i) => setState(() => index = i),
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: 'Feed',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.insights_outlined),
-            selectedIcon: Icon(Icons.insights),
-            label: 'Training',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.fiber_manual_record_outlined),
-            selectedIcon: Icon(Icons.fiber_manual_record),
-            label: 'Record',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.route_outlined),
-            selectedIcon: Icon(Icons.route),
-            label: 'Routes',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person_outline),
-            selectedIcon: Icon(Icons.person),
-            label: 'You',
-          ),
-        ],
+      bottomNavigationBar: StravaBottomNav(
+        index: index,
+        onChanged: (i) => setState(() => index = i),
       ),
     );
   }

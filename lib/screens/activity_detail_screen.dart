@@ -20,127 +20,160 @@ class ActivityDetailScreen extends StatelessWidget {
     final splits = app.analysis.kilometerSplits(activity);
     final effort = app.analysis.relativeEffort(activity);
     final date =
-        DateFormat('EEEE, MMM d · HH:mm').format(activity.startedAt);
+        DateFormat('EEEE, MMM d · h:mm a').format(activity.startedAt);
 
     return Scaffold(
+      backgroundColor: StravaColors.white,
       appBar: AppBar(
-        title: Text(activity.displayName),
+        title: Text(activity.sport.label),
         actions: [
-          if (app.entitlements.advancedAnalysis)
-            Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: Center(
-                child: Text(
-                  'PREMIUM',
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: StrideColors.moss,
-                        fontWeight: FontWeight.w800,
-                      ),
-                ),
-              ),
-            ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.ios_share_outlined),
+          ),
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
         children: [
-          Text(date, style: Theme.of(context).textTheme.bodyMedium),
-          const SizedBox(height: 12),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: ActivityMap(
-              points: activity.points,
-              height: 240,
-              interactive: true,
-            ),
+          ActivityMap(
+            points: activity.points,
+            height: 260,
+            interactive: true,
           ),
-          const SizedBox(height: 20),
-          Row(
-            children: [
-              Expanded(
-                child: StatBlock(
-                  label: 'Distance',
-                  value: '${formatDistanceKm(activity.distanceMeters)} km',
-                ),
-              ),
-              Expanded(
-                child: StatBlock(
-                  label: 'Moving time',
-                  value: formatDuration(activity.movingTime),
-                  align: TextAlign.center,
-                ),
-              ),
-              Expanded(
-                child: StatBlock(
-                  label: activity.sport == SportType.ride ? 'Avg speed' : 'Pace',
-                  value: activity.sport == SportType.ride
-                      ? formatSpeed(activity.speedKmh)
-                      : formatPace(activity.paceSecPerKm),
-                  align: TextAlign.right,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 18),
-          Row(
-            children: [
-              Expanded(
-                child: StatBlock(
-                  label: 'Elev gain',
-                  value: '${activity.elevationGainMeters.round()} m',
-                ),
-              ),
-              if (app.entitlements.relativeEffort)
-                Expanded(
-                  child: StatBlock(
-                    label: 'Relative effort',
-                    value: effort.toStringAsFixed(0),
-                    align: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  activity.displayName,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w900,
+                    color: StravaColors.text,
                   ),
                 ),
-              if (activity.avgHeartRate != null)
-                Expanded(
-                  child: StatBlock(
-                    label: 'Avg HR',
-                    value: '${activity.avgHeartRate} bpm',
-                    align: TextAlign.right,
+                const SizedBox(height: 4),
+                Text(
+                  date,
+                  style: const TextStyle(
+                    color: StravaColors.muted,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-            ],
-          ),
-          if (app.entitlements.advancedAnalysis && splits.isNotEmpty) ...[
-            const SizedBox(height: 28),
-            Text(
-              'Kilometer splits',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 8),
-            ...splits.map(
-              (s) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Row(
+                const SizedBox(height: 18),
+                Row(
                   children: [
-                    SizedBox(
-                      width: 48,
-                      child: Text(
-                        'Km ${s.kmIndex}',
-                        style: Theme.of(context).textTheme.bodyLarge,
+                    Expanded(
+                      child: StatBlock(
+                        label: 'Distance',
+                        value:
+                            '${formatDistanceKm(activity.distanceMeters)} km',
                       ),
                     ),
                     Expanded(
-                      child: Text(
-                        formatPace(s.paceSecPerKm),
-                        style: Theme.of(context).textTheme.titleMedium,
+                      child: StatBlock(
+                        label: 'Moving Time',
+                        value: formatDuration(activity.movingTime),
+                        align: TextAlign.center,
                       ),
                     ),
-                    Text(
-                      '${s.elevationDelta >= 0 ? '+' : ''}${s.elevationDelta.round()} m',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                    Expanded(
+                      child: StatBlock(
+                        label: activity.sport == SportType.ride
+                            ? 'Avg Speed'
+                            : 'Pace',
+                        value: activity.sport == SportType.ride
+                            ? formatSpeed(activity.speedKmh)
+                            : formatPace(activity.paceSecPerKm),
+                        align: TextAlign.right,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    Expanded(
+                      child: StatBlock(
+                        label: 'Elev Gain',
+                        value: '${activity.elevationGainMeters.round()} m',
+                      ),
+                    ),
+                    if (app.entitlements.relativeEffort)
+                      Expanded(
+                        child: StatBlock(
+                          label: 'Rel Effort',
+                          value: effort.toStringAsFixed(0),
+                          align: TextAlign.center,
+                        ),
+                      ),
+                    if (activity.avgHeartRate != null)
+                      Expanded(
+                        child: StatBlock(
+                          label: 'Avg HR',
+                          value: '${activity.avgHeartRate} bpm',
+                          align: TextAlign.right,
+                        ),
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          if (app.entitlements.advancedAnalysis && splits.isNotEmpty) ...[
+            const Divider(height: 28),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: Text(
+                'Splits',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ),
+            ...splits.map(
+              (s) => Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 52,
+                      child: Text(
+                        '${s.kmIndex}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w800,
+                          color: StravaColors.text,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(3),
+                        child: LinearProgressIndicator(
+                          value: (s.paceSecPerKm / 600).clamp(0.15, 1),
+                          minHeight: 8,
+                          backgroundColor: StravaColors.hairline,
+                          color: StravaColors.orange,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    SizedBox(
+                      width: 72,
+                      child: Text(
+                        formatPace(s.paceSecPerKm),
+                        textAlign: TextAlign.right,
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
+            const SizedBox(height: 24),
           ],
         ],
       ),
